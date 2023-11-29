@@ -1,0 +1,85 @@
+import React, {useEffect, useState} from 'react'; 
+
+let nextId=0;
+
+function Proba1() { 
+  
+  const [checked, setChecked] = useState(false); 
+  const [items,setItems]=useState([]);
+
+
+  const handleChange = () => { 
+    
+    setChecked(!checked); 
+    
+  }; 
+
+
+  const set=(nextId,checked)=>{
+    return new Promise((resolve,reject)=>{
+
+    if(nextId!==undefined){
+    resolve({id:nextId,kvaka:checked});
+    }else{
+      reject("Error xxx");
+    }
+  });
+  }
+
+  const unos=async ()=>{
+    console.log("unos");
+   
+    let p=await set(nextId,checked);
+
+    setItems([
+      ...items,
+      //await { id:++nextId,kvaka:checked}
+      p
+    ]);
+
+    console.log(items);
+  }
+  
+
+useEffect(()=>{
+  console.log(nextId);
+  
+  
+  
+},[])
+
+  return ( 
+    
+    <div> 
+    
+       <input type="checkbox" onChange={handleChange}></input>
+       <br/>
+       <button onClick={unos}>Stisni</button>
+        
+      <p>
+        {checked ? 'Checked' : 'Not checked'}
+      </p> 
+    
+    </div> 
+    
+  ); 
+  
+}; 
+
+export default Proba1;
+
+////////////////////////////////////////////////////////////
+
+ <input
+              type="checkbox"
+              checked={bat?check:item.kvaka}
+              onChange={e =>{ setCheck(!check);
+                           console.log(e.target.checked);
+                           item.kvaka=e.target.checked;
+              }
+              }
+              onClick={prekrizi}
+              />
+
+///////////////////////////////////////////////////////////////
+
