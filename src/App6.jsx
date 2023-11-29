@@ -14,7 +14,6 @@ const all=(e)=>{
     console.log("all");
     setFilter("all");
 
-    
     document.querySelector(".active")?.classList.remove("active");
     e.target.classList.add("active");
 }
@@ -86,9 +85,12 @@ console.log(items);
             <input
               type="checkbox"
               checked={item.kvaka}
-              onChange={e =>{ setCheck(!check);
+              onChange={e =>{
+                            const itemsx=[...items];
+                            const checkx=itemsx.find(todo=>todo.id===item.id);
                            console.log(e.target.checked);
-                           item.kvaka=e.target.checked;
+                           checkx.kvaka=!checkx.kvaka
+                           setItems(itemsx);
               }
               } />
               
